@@ -4,7 +4,7 @@ import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementEntry;
 import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.world.GameRules;
+import net.minecraft.world.rule.GameRules;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,7 +21,7 @@ public abstract class PlayerAdvancementTrackerMixin {
     private void grantCriterion(AdvancementEntry advancementEntry, String criterionName, CallbackInfoReturnable<Boolean> cir) {
         Advancement advancement = advancementEntry.value();
         if (advancement.display().isPresent() && advancement.display().get().shouldAnnounceToChat()) {
-            PlayerAdvancementTrackerMixinKotlin.INSTANCE.grantCriterion(owner, advancement, this.owner.getServerWorld().getGameRules().getBoolean(GameRules.ANNOUNCE_ADVANCEMENTS));
+            PlayerAdvancementTrackerMixinKotlin.INSTANCE.grantCriterion(owner, advancement, this.owner.getEntityWorld().getGameRules().getValue(GameRules.ANNOUNCE_ADVANCEMENTS));
         }
     }
 }

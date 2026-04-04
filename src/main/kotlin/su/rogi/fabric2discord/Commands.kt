@@ -9,15 +9,19 @@ import net.minecraft.text.Style
 import net.minecraft.text.Text
 import net.minecraft.text.TextColor
 import su.rogi.fabric2discord.config.Configs
+import net.minecraft.command.permission.LeveledPermissionPredicate
+import net.minecraft.command.permission.PermissionLevel
 
 object Commands {
     fun register() {
         CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher, _, _ ->
             dispatcher.register(CommandManager.literal("f2d")
-                .requires { server -> server.hasPermissionLevel(4) }
+                .requires { source ->
+                    (source.permissions as? LeveledPermissionPredicate)?.getLevel()?.isAtLeast(PermissionLevel.OWNERS) ?: false
+                }
                 .then(CommandManager.literal("reload")
                     .executes(Commands::reload)
-            ))
+                ))
         })
     }
 

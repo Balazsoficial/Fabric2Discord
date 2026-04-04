@@ -1,20 +1,15 @@
-rootProject.name = "Fabric2Discord"
 pluginManagement {
     repositories {
-        maven("https://maven.fabricmc.net/") {
-            name = "Fabric"
-        }
+        maven("https://maven.fabricmc.net/") { name = "Fabric" }
         mavenCentral()
         gradlePluginPortal()
     }
-
-    val loom_version: String by settings
-    val fabric_kotlin_version: String by settings
     plugins {
-        id("fabric-loom") version loom_version
-        id("org.jetbrains.kotlin.jvm") version
-                fabric_kotlin_version
-                    .split("+kotlin.")[1] // Grabs the sentence after `+kotlin.`
-                    .split("+")[0] // Ensures sentences like `+build.1` are ignored
+        id("fabric-loom") version(providers.gradleProperty("loom_version").get())
+        // Must match the Kotlin version bundled in fabric_kotlin_version above.
+        // Loom 1.14's kotlinx-metadata-jvm tops out at metadata version 2.1.0,
+        // so using Kotlin 2.2+ here will cause "cannot write metadata for future
+        // compiler versions" at remap time.
+        kotlin("jvm") version "2.1.10"
     }
 }

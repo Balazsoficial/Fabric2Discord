@@ -95,9 +95,7 @@ tasks {
             }
         }
 
-        // select the repositories you want to publish to
         repositories {
-            // uncomment to publish to the local maven
             // mavenLocal()
         }
     }
@@ -110,10 +108,5 @@ tasks {
 }
 
 java {
-    // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
-    // if it is present.
-    // If you remove this line, sources will not be generated.
     withSourcesJar()
 }
-
-// configure the maven publication
