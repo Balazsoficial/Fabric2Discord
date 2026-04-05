@@ -5,7 +5,7 @@ plugins {
     id("fabric-loom")
     `maven-publish`
     java
-    id("io.github.goooler.shadow") version("8.1.8")
+    id("com.gradleup.shadow") version("8.3.6")
 }
 
 group = property("maven_group")!!
@@ -60,9 +60,8 @@ tasks {
 
     shadowJar {
         archiveClassifier = "bundle"
-        relocationPrefix = "dependencies"
         configurations = listOf(project.configurations.shadow.get())
-        isEnableRelocation = true
+        isEnableRelocation = false  // disable relocation completely
 
         exclude(
             "**/META-INF/**",
@@ -71,7 +70,6 @@ tasks {
             "org/jetbrains/annotations/**",
             "*.kotlin_module"
         )
-        minimize()
     }
 
     remapJar {
