@@ -9,12 +9,13 @@
 Project has been fully rewritten and major parts are changed which results in broken compatability for older configs. Wiki articles may have old information about configuration, this will be fixed soon.
 
 # 📂 Version Support
-Due to lack of free time and skills the support is limited to latest 2 major releases with latest minor version being supported.
+Due to lack of free time and skills i will primarily be focusing on versions that are important to me or are requested
 
 | Support            | Minecraft   |
 |--------------------|-------------|
-| ✅ Active, Primary  | 1.20.4      |
-| ✅ Active, Backport | 1.19.4      |
+| ✅ Active, Primary  | 1.21.11      |
+| ❌ Outdated        | 1.20.4      |
+| ❌ Outdated, Backport | 1.19.4      |
 | ❌ Outdated         | 1.20-1.20.3 |
 | ❌ Discontinued     | 1.18.2      |
 
