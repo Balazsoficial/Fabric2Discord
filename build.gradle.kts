@@ -33,6 +33,7 @@ dependencies {
     mappings("net.fabricmc:yarn:${property("yarn_mappings")}:v2")
     modImplementation("net.fabricmc:fabric-loader:${property("loader_version")}")
 
+
     fapiModules.forEach {
         modIncludeImplement(fabricApi.module(it, property("fabric_api_version").toString()))
     }
@@ -46,6 +47,7 @@ dependencies {
     implementation(shadow("org.spongepowered:configurate-hocon:4.1.2")!!)
     implementation(shadow("dev.kord:kord-core:0.13.1")!!)
     implementation(shadow("com.vdurmont:emoji-java:5.1.1")!!)
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.5.0")
 }
 
 tasks {
